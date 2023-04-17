@@ -1,0 +1,82 @@
+---
+title: "report"
+author: "Alejandro Perez"
+date: "`r Sys.Date()`"
+output: pdf_document
+---
+
+## Introduction
+
+In this analysis, we use a publicly available white wine dataset to answer the question: which factors contribute to a higher quality rating? We will investigate whether higher acidity rates, pH, and density rates affect the quality of the wine. The dataset contains 11 input features (fixed.acidity, volatile.acidity, citric.acid, residual.sugar, chlorides, free.sulfur.dioxide, total.sulfur.dioxide, density, pH, sulphates, alcohol) and one output variable (quality).
+
+## Methods
+
+We use linear regression and random forest models to answer the question. Linear regression is a simple and interpretable model, while random forest is a more complex, non-linear model that can capture intricate relationships between variables. Both models have their advantages and disadvantages, and by comparing their performance, we can gain insights into the underlying relationships between the predictors and the response variable.
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+# Load necessary libraries
+library(tidyverse)
+library(caret)
+library(randomForest)
+```
+
+
+```{r}
+# Read the dataset
+url <- "https://archive.ics.uci.edu/ml/machine-learning-databases/wine-quality/winequality-white.csv"
+white_wine <- read_delim(url, col_names = TRUE, delim = ";")
+
+# Replace spaces in column names with underscores
+colnames(white_wine) <- make.names(colnames(white_wine), unique = TRUE)
+# Set seed for reproducibility
+set.seed(123)
+
+# Train/Test split
+train_idx <- createDataPartition(white_wine$quality, p = 0.8, list = FALSE)
+train_data <- white_wine[train_idx, ]
+test_data <- white_wine[-train_idx, ]
+# Linear Regression
+lm_model <- lm(quality ~ ., data = train_data)
+lm_summary <- summary(lm_model)
+
+# Random Forest
+rf_model <- randomForest(quality ~ ., data = train_data)
+# Evaluate models on test data
+lm_pred <- predict(lm_model, test_data)
+lm_rmse <- sqrt(mean((test_data$quality - lm_pred)^2))
+
+rf_pred <- predict(rf_model, test_data)
+rf_rmse <- sqrt(mean((test_data$quality - rf_pred)^2))
+
+# Variable Importance for Random Forest
+var_importance <- importance(rf_model)
+var_importance_plot <- varImpPlot(rf_model)
+lm_summary
+rf_model
+print(var_importance_plot)
+```
+Interpretation and Conclusion
+Based on the model summaries and RMSE values, the random forest model (RMSE = r rf_rmse) outperforms the linear regression model (RMSE = r lm_rmse) in predicting wine quality. This suggests that the relationship between the predictors and wine quality is not strictly linear, and the random forest model can capture these more complex relationships.
+
+The variable importance plot for the random forest model indicates that alcohol content is the most important predictor of wine quality, followed by density, volatile acidity, and free sulfur dioxide.
+
+In the linear regression model, we observe the following relationships with wine quality:
+
+Higher fixed acidity has a small positive effect on quality (p < 0.05).
+Higher volatile acidity has a negative effect on quality (p < 0.001).
+Citric acid does not have a significant effect on quality (p > 0.05).
+Higher residual sugar has a positive effect on quality (p < 0.001).
+Chlorides do not have a significant effect on quality (p > 0.05).
+Higher free sulfur dioxide has a positive effect on quality (p < 0.001).
+Total sulfur dioxide does not have a significant effect on quality (p > 0.05).
+Higher density has a negative effect on quality (p < 0.001).
+Higher pH has a positive effect on quality (p < 0.001).
+Higher sulphates have a positive effect on quality (p < 0.001).
+Higher alcohol content has a positive effect on quality (p < 0.001).
+To summarize, the random forest model shows that alcohol content, density, volatile acidity, and free sulfur dioxide are the most important factors affecting wine quality. The linear regression model largely agrees with these findings, but it also identifies other significant predictors, such as fixed acidity, residual sugar, pH, and sulphates. It is important to note that some of the predictors' effects on wine quality might be nonlinear, and the random forest model can better capture these relationships compared to the linear regression model.
+
+In conclusion, our analysis suggests that alcohol content is the most influential factor in determining wine quality, while other factors such as density, volatile acidity, and free sulfur dioxide also play important roles. To improve wine quality, wine producers should focus on optimizing these factors, keeping in mind that relationships between these predictors and wine quality might be complex and nonlinear.

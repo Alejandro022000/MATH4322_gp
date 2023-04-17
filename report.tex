@@ -1,0 +1,412 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={report},
+  pdfauthor={Alejandro Perez},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{report}
+\author{Alejandro Perez}
+\date{2023-04-17}
+
+\begin{document}
+\maketitle
+
+\hypertarget{introduction}{%
+\subsection{Introduction}\label{introduction}}
+
+In this analysis, we use a publicly available white wine dataset to
+answer the question: which factors contribute to a higher quality
+rating? We will investigate whether higher acidity rates, pH, and
+density rates affect the quality of the wine. The dataset contains 11
+input features (fixed.acidity, volatile.acidity, citric.acid,
+residual.sugar, chlorides, free.sulfur.dioxide, total.sulfur.dioxide,
+density, pH, sulphates, alcohol) and one output variable (quality).
+
+\hypertarget{methods}{%
+\subsection{Methods}\label{methods}}
+
+We use linear regression and random forest models to answer the
+question. Linear regression is a simple and interpretable model, while
+random forest is a more complex, non-linear model that can capture
+intricate relationships between variables. Both models have their
+advantages and disadvantages, and by comparing their performance, we can
+gain insights into the underlying relationships between the predictors
+and the response variable.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Load necessary libraries}
+\FunctionTok{library}\NormalTok{(tidyverse)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: package 'tidyverse' was built under R version 4.1.3
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: package 'ggplot2' was built under R version 4.1.3
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: package 'tibble' was built under R version 4.1.3
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: package 'tidyr' was built under R version 4.1.3
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: package 'readr' was built under R version 4.1.3
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: package 'purrr' was built under R version 4.1.3
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: package 'dplyr' was built under R version 4.1.3
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: package 'stringr' was built under R version 4.1.3
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: package 'forcats' was built under R version 4.1.3
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: package 'lubridate' was built under R version 4.1.3
+\end{verbatim}
+
+\begin{verbatim}
+## -- Attaching core tidyverse packages ------------------------ tidyverse 2.0.0 --
+## v dplyr     1.1.0     v readr     2.1.4
+## v forcats   1.0.0     v stringr   1.5.0
+## v ggplot2   3.4.1     v tibble    3.2.1
+## v lubridate 1.9.2     v tidyr     1.3.0
+## v purrr     1.0.1     
+## -- Conflicts ------------------------------------------ tidyverse_conflicts() --
+## x dplyr::filter() masks stats::filter()
+## x dplyr::lag()    masks stats::lag()
+## i Use the ]8;;http://conflicted.r-lib.org/conflicted package]8;; to force all conflicts to become errors
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(caret)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: package 'caret' was built under R version 4.1.3
+\end{verbatim}
+
+\begin{verbatim}
+## Loading required package: lattice
+## 
+## Attaching package: 'caret'
+## 
+## The following object is masked from 'package:purrr':
+## 
+##     lift
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(randomForest)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: package 'randomForest' was built under R version 4.1.3
+\end{verbatim}
+
+\begin{verbatim}
+## randomForest 4.7-1.1
+## Type rfNews() to see new features/changes/bug fixes.
+## 
+## Attaching package: 'randomForest'
+## 
+## The following object is masked from 'package:dplyr':
+## 
+##     combine
+## 
+## The following object is masked from 'package:ggplot2':
+## 
+##     margin
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Read the dataset}
+\NormalTok{url }\OtherTok{\textless{}{-}} \StringTok{"https://archive.ics.uci.edu/ml/machine{-}learning{-}databases/wine{-}quality/winequality{-}white.csv"}
+\NormalTok{white\_wine }\OtherTok{\textless{}{-}} \FunctionTok{read\_delim}\NormalTok{(url, }\AttributeTok{col\_names =} \ConstantTok{TRUE}\NormalTok{, }\AttributeTok{delim =} \StringTok{";"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Rows: 4898 Columns: 12
+## -- Column specification --------------------------------------------------------
+## Delimiter: ";"
+## dbl (12): fixed acidity, volatile acidity, citric acid, residual sugar, chlo...
+## 
+## i Use `spec()` to retrieve the full column specification for this data.
+## i Specify the column types or set `show_col_types = FALSE` to quiet this message.
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Replace spaces in column names with underscores}
+\FunctionTok{colnames}\NormalTok{(white\_wine) }\OtherTok{\textless{}{-}} \FunctionTok{make.names}\NormalTok{(}\FunctionTok{colnames}\NormalTok{(white\_wine), }\AttributeTok{unique =} \ConstantTok{TRUE}\NormalTok{)}
+\CommentTok{\# Set seed for reproducibility}
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{123}\NormalTok{)}
+
+\CommentTok{\# Train/Test split}
+\NormalTok{train\_idx }\OtherTok{\textless{}{-}} \FunctionTok{createDataPartition}\NormalTok{(white\_wine}\SpecialCharTok{$}\NormalTok{quality, }\AttributeTok{p =} \FloatTok{0.8}\NormalTok{, }\AttributeTok{list =} \ConstantTok{FALSE}\NormalTok{)}
+\NormalTok{train\_data }\OtherTok{\textless{}{-}}\NormalTok{ white\_wine[train\_idx, ]}
+\NormalTok{test\_data }\OtherTok{\textless{}{-}}\NormalTok{ white\_wine[}\SpecialCharTok{{-}}\NormalTok{train\_idx, ]}
+\CommentTok{\# Linear Regression}
+\NormalTok{lm\_model }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(quality }\SpecialCharTok{\textasciitilde{}}\NormalTok{ ., }\AttributeTok{data =}\NormalTok{ train\_data)}
+\NormalTok{lm\_summary }\OtherTok{\textless{}{-}} \FunctionTok{summary}\NormalTok{(lm\_model)}
+
+\CommentTok{\# Random Forest}
+\NormalTok{rf\_model }\OtherTok{\textless{}{-}} \FunctionTok{randomForest}\NormalTok{(quality }\SpecialCharTok{\textasciitilde{}}\NormalTok{ ., }\AttributeTok{data =}\NormalTok{ train\_data)}
+\CommentTok{\# Evaluate models on test data}
+\NormalTok{lm\_pred }\OtherTok{\textless{}{-}} \FunctionTok{predict}\NormalTok{(lm\_model, test\_data)}
+\NormalTok{lm\_rmse }\OtherTok{\textless{}{-}} \FunctionTok{sqrt}\NormalTok{(}\FunctionTok{mean}\NormalTok{((test\_data}\SpecialCharTok{$}\NormalTok{quality }\SpecialCharTok{{-}}\NormalTok{ lm\_pred)}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{))}
+
+\NormalTok{rf\_pred }\OtherTok{\textless{}{-}} \FunctionTok{predict}\NormalTok{(rf\_model, test\_data)}
+\NormalTok{rf\_rmse }\OtherTok{\textless{}{-}} \FunctionTok{sqrt}\NormalTok{(}\FunctionTok{mean}\NormalTok{((test\_data}\SpecialCharTok{$}\NormalTok{quality }\SpecialCharTok{{-}}\NormalTok{ rf\_pred)}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{))}
+
+\CommentTok{\# Variable Importance for Random Forest}
+\NormalTok{var\_importance }\OtherTok{\textless{}{-}} \FunctionTok{importance}\NormalTok{(rf\_model)}
+\NormalTok{var\_importance\_plot }\OtherTok{\textless{}{-}} \FunctionTok{varImpPlot}\NormalTok{(rf\_model)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{report_files/figure-latex/unnamed-chunk-2-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{lm\_summary}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:
+## lm(formula = quality ~ ., data = train_data)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -3.7087 -0.4905 -0.0320  0.4547  3.1181 
+## 
+## Coefficients:
+##                        Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)           1.444e+02  2.024e+01   7.132 1.17e-12 ***
+## fixed.acidity         5.502e-02  2.289e-02   2.403 0.016287 *  
+## volatile.acidity     -1.890e+00  1.265e-01 -14.938  < 2e-16 ***
+## citric.acid           6.838e-02  1.084e-01   0.631 0.528016    
+## residual.sugar        7.833e-02  8.174e-03   9.583  < 2e-16 ***
+## chlorides            -5.202e-01  5.981e-01  -0.870 0.384529    
+## free.sulfur.dioxide   3.343e-03  9.369e-04   3.569 0.000363 ***
+## total.sulfur.dioxide -3.570e-04  4.220e-04  -0.846 0.397604    
+## density              -1.442e+02  2.054e+01  -7.019 2.62e-12 ***
+## pH                    6.342e-01  1.162e-01   5.458 5.11e-08 ***
+## sulphates             5.995e-01  1.130e-01   5.308 1.17e-07 ***
+## alcohol               1.968e-01  2.623e-02   7.503 7.68e-14 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 0.7499 on 3907 degrees of freedom
+## Multiple R-squared:  0.2826, Adjusted R-squared:  0.2806 
+## F-statistic: 139.9 on 11 and 3907 DF,  p-value: < 2.2e-16
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{rf\_model}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:
+##  randomForest(formula = quality ~ ., data = train_data) 
+##                Type of random forest: regression
+##                      Number of trees: 500
+## No. of variables tried at each split: 3
+## 
+##           Mean of squared residuals: 0.3668714
+##                     % Var explained: 53.06
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{print}\NormalTok{(var\_importance\_plot)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                      IncNodePurity
+## fixed.acidity             184.2600
+## volatile.acidity          315.3986
+## citric.acid               192.4062
+## residual.sugar            219.0714
+## chlorides                 244.4757
+## free.sulfur.dioxide       302.9807
+## total.sulfur.dioxide      238.2083
+## density                   337.4709
+## pH                        203.5677
+## sulphates                 175.9536
+## alcohol                   494.5513
+\end{verbatim}
+
+Interpretation and Conclusion Based on the model summaries and RMSE
+values, the random forest model (RMSE = r rf\_rmse) outperforms the
+linear regression model (RMSE = r lm\_rmse) in predicting wine quality.
+This suggests that the relationship between the predictors and wine
+quality is not strictly linear, and the random forest model can capture
+these more complex relationships.
+
+The variable importance plot for the random forest model indicates that
+alcohol content is the most important predictor of wine quality,
+followed by density, volatile acidity, and free sulfur dioxide.
+
+In the linear regression model, we observe the following relationships
+with wine quality:
+
+Higher fixed acidity has a small positive effect on quality (p
+\textless{} 0.05). Higher volatile acidity has a negative effect on
+quality (p \textless{} 0.001). Citric acid does not have a significant
+effect on quality (p \textgreater{} 0.05). Higher residual sugar has a
+positive effect on quality (p \textless{} 0.001). Chlorides do not have
+a significant effect on quality (p \textgreater{} 0.05). Higher free
+sulfur dioxide has a positive effect on quality (p \textless{} 0.001).
+Total sulfur dioxide does not have a significant effect on quality (p
+\textgreater{} 0.05). Higher density has a negative effect on quality (p
+\textless{} 0.001). Higher pH has a positive effect on quality (p
+\textless{} 0.001). Higher sulphates have a positive effect on quality
+(p \textless{} 0.001). Higher alcohol content has a positive effect on
+quality (p \textless{} 0.001). To summarize, the random forest model
+shows that alcohol content, density, volatile acidity, and free sulfur
+dioxide are the most important factors affecting wine quality. The
+linear regression model largely agrees with these findings, but it also
+identifies other significant predictors, such as fixed acidity, residual
+sugar, pH, and sulphates. It is important to note that some of the
+predictors' effects on wine quality might be nonlinear, and the random
+forest model can better capture these relationships compared to the
+linear regression model.
+
+In conclusion, our analysis suggests that alcohol content is the most
+influential factor in determining wine quality, while other factors such
+as density, volatile acidity, and free sulfur dioxide also play
+important roles. To improve wine quality, wine producers should focus on
+optimizing these factors, keeping in mind that relationships between
+these predictors and wine quality might be complex and nonlinear.
+
+\end{document}
